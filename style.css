@@ -1,0 +1,80 @@
+
+.dual-range {
+  --start: 0%;
+  --end: 100%;
+  position: relative;
+  width: 340px;
+  height: 28px;
+  display: inline-block;
+}
+.dual-range::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 4px; transform: translateY(-50%);
+  background: color-mix(in oklch, canvastext, canvas 88%);
+  border-radius: 2px;
+}
+.dual-range::after {
+  content: "";
+  position: absolute;
+  left: var(--start);
+  right: calc(100% - var(--end));
+  top: 50%;
+  height: 4px; transform: translateY(-50%);
+  background: color-mix(in oklch, #6c8ae4, canvas 10%);
+  border-radius: 2px;
+}
+/* stack two native range inputs on top of the same track */
+.dual-range input[type="range"] {
+  position: absolute;
+  inset: 0 0 0 0;
+  width: 100%;
+  background: transparent;
+  pointer-events: none; /* let only thumbs receive events */
+  -webkit-appearance: none;
+  appearance: none;
+}
+.dual-range input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
+  -webkit-appearance: none;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: canvastext;
+  border: 1px solid color-mix(in oklch, canvastext, canvas 70%);
+}
+.dual-range input[type="range"]::-moz-range-thumb {
+  pointer-events: auto;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: canvastext;
+  border: 1px solid color-mix(in oklch, canvastext, canvas 70%);
+}
+.dual-range input[type="range"]::-webkit-slider-runnable-track { background: transparent; }
+.dual-range input[type="range"]::-moz-range-track { background: transparent; }
+
+.date-slider .dual-range { width: 300px; }
+
+.mini-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  font-size: .92rem;
+}
+.mini-legend .swatch {
+  width: 12px; height: 12px; border-radius: 3px;
+  border: 1px solid color-mix(in oklch, canvastext, canvas 70%);
+}
+/* Softer grid and tick lines */
+.gridlines line {
+  stroke: #d4d4d4;   /* light–medium gray */
+  stroke-opacity: 1;
+  stroke-dasharray: none; /* keep solid */
+}
+
+
+.x-axis line,
+.y-axis line {
+  stroke: #efefef;        /* very light ticks */
+  stroke-opacity: 1;
+}
+
+
