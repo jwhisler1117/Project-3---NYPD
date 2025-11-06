@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NYPD Misconduct — Interactive</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .chart-wrap { max-width: 1100px; margin: 0 auto; padding: 1rem; }
+    .row { display: grid; grid-template-columns: 1fr 360px; gap: 1rem; align-items: start; }
+    .panel { border: 1px solid color-mix(in oklch, canvastext, canvas 85%); border-radius: .5rem; padding: .75rem 1rem; background: canvas; }
+    .legend { display:flex; gap:.75rem; flex-wrap:wrap; font-size:.9rem; }
+    .legend span { display:inline-flex; align-items:center; gap:.4rem; }
+    .swatch { width:12px; height:12px; border-radius:2px; }
+    .brush .selection { fill: rgba(0,0,0,.08); stroke: currentColor; }
+    .bar text { font: 12px system-ui, sans-serif; }
+    .tooltip { position: fixed; padding: .5rem .6rem; background: canvas; border: 1px solid color-mix(in oklch, canvastext, canvas 85%); border-radius: .5rem; box-shadow: 0 6px 16px rgba(0,0,0,.15); pointer-events: none; z-index: 100; }
+  </style>
+</head>
+<body>
+  <div class="chart-wrap">
+    <h1>NYPD Misconduct Allegations (1985–2020)</h1>
+    <p class="panel">Explore how allegations change over time by type, and how board outcomes differ. Brush the timeline to filter. Use the controls to focus your view.</p>
+
+    <div id="filters" class="panel" aria-label="Filters and Actions"></div>
+
+    <h2>Misconduct Allegations Over Time</h2>
+    <div id="timeline" class="panel"></div>
+    <div class="legend" id="legend"></div>
+
+    <div class="row">
+      <div class="panel">
+        <h3>Board Outcomes (filtered)</h3>
+        <div id="dispo-bars"></div>
+      </div>
+      <div class="panel">
+        <h3>Details</h3>
+        <div id="details" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tooltip" class="tooltip" hidden></div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
